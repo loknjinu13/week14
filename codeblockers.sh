@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "go to /opt directory"
-cd ~/opt
+cd /opt
 echo "install oracle java  and accept agreement"
 sudo wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-arm32-vfp-hflt.tar.gz
 echo "complile into a zip file"
