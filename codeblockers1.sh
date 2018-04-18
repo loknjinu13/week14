@@ -31,9 +31,9 @@ echo "install git"
 echo "install screen to help run minecraft server console"
 sudo apt-get install screen
 echo "create a folder"
-cd ~
-mkdir codeblockers
-cd codeblockers
+cd /opt
+    mkdir minecraft
+    cd minecraft
 sleep 1
 echo "download buildtools"
 wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
@@ -41,28 +41,32 @@ wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifac
 echo "build the server"
 sudo java -jar BuildTools.jar --rev 1.12.2
 echo "lets run our server"
-sudo java -Xms512M -Xmx1008M -jar ~/codeblockers/spigot-1.12.2.jar nogui
+sudo java -Xms1024M -Xmx2048M -jar /opt/minecraft/spigot-1.12.2.jar nogui
 echo "accept eula agreement"
-sudo nano ~/codeblockers/eula.txt
+sudo nano eula.txt
 echo "configure server.properties"
-sudo nano ~/codeblockers/server.properties
+sudo nano server.properties
 echo "rerun our minecraft server"
-sudo java -Xms512M -Xmx1008M -jar ~/codeblockers/spigot-1.12.2.jar nogui
+sudo java -Xms1024M -Xmx2048M -jar /opt/minecraft/spigot-1.12.2.jar nogui
 echo "bootup server automatically with a script"
-mkdir ~/startup
-cd ~/startup
-nano ~/startup/codebminecraft.sh
+cd /opt && mkdir scripts
+    cd scripts
+    nano codebminecraft.sh
 echo "insert the command to run the server in the bash script you create"
-sleep 2
+echo  " cd /opt/minecraft/ && java -Xms1024M -Xmx2048M -jar /opt/minecraft/spigot-1.12.2.jar nogui"
+
+sleep 5
 echo "make the script executable"
-chmod u+x ~/startup/codebminecraft.sh
+chmod u+x codebminecraft.sh
 echo "lets start the server"
 screen
-sudo ~/startup/minecraft.sh
+/opt/scripts/codebminecraft.sh
 echo "to exit screen use CTRL AD"
 sleep 1
 echo "lets save our working serving"
-cd ~
-tar -zcvf codebminecraft_backup.tar.gz ~/codeblockers
+cd /opt
+tar -zcvf codebminecraft_backup.tar.gz minecfraft
+echo "lets harden our firewall"
+sudo /sbin/iptables -A INPUT -p tcp --dport 25565 -m state --state NEW -j ACCEPT
 
 echo "end of script"
