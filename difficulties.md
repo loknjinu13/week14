@@ -3,9 +3,9 @@
  Our last deployment process was qausi successful as we got the minecraft server running.
 Nevertheless, we could not access the server nor make the server boot on startup.
 
+The following step by step process in installing the [raspberry](https://github.com/loknjinu13/week14/blob/master/raspberry.md) was created.
 
-
-Difficulties In Installation on Sootsplash
+## Difficulties In Installation on Sootsplash
 When i issued the java build command i encountered this error when my script ran;
 
 _/usr/bin/java: 1: /usr/bin/java: Syntax error: word unexpected (expecting ")")_
